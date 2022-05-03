@@ -24,7 +24,6 @@ const Post: GatsbyPage<BlogPostBySlugQuery, PostContext> = ({
   const date = new Date(pageContext.frontmatter.date)
 
   const [link, canonicalLink] = ((frontmatter): [LinkProps[], ReactNode] => {
-    console.log(frontmatter)
     if (frontmatter.site === "zenn") {
       return [
         [
