@@ -39,7 +39,7 @@ const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
             marginTop: `2rem`,
           }}
         >
-          © {new Date().getFullYear()}, Built with
+          © {new Date().getFullYear()} <a href="https://github.com/yu-ichiro/blog.yu-smith.com">@yu-ichiro</a>, Built with
           {` `}
           <a href="https://www.gatsbyjs.com">Gatsby</a>
         </footer>
