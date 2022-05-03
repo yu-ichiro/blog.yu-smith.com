@@ -679,6 +679,7 @@ export type MarkdownRemarkFrontmatter = {
   site?: Maybe<Scalars['String']>;
   canonical?: Maybe<Scalars['String']>;
   siteTags?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ogImageTitle?: Maybe<Scalars['String']>;
   topics?: Maybe<Array<Maybe<Scalars['String']>>>;
   emoji?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
@@ -1143,6 +1144,7 @@ export type MarkdownRemarkFrontmatterFilterInput = {
   site?: InputMaybe<StringQueryOperatorInput>;
   canonical?: InputMaybe<StringQueryOperatorInput>;
   siteTags?: InputMaybe<StringQueryOperatorInput>;
+  ogImageTitle?: InputMaybe<StringQueryOperatorInput>;
   topics?: InputMaybe<StringQueryOperatorInput>;
   emoji?: InputMaybe<StringQueryOperatorInput>;
   type?: InputMaybe<StringQueryOperatorInput>;
@@ -1404,6 +1406,7 @@ export type FileFieldsEnum =
   | 'childrenMarkdownRemark___frontmatter___site'
   | 'childrenMarkdownRemark___frontmatter___canonical'
   | 'childrenMarkdownRemark___frontmatter___siteTags'
+  | 'childrenMarkdownRemark___frontmatter___ogImageTitle'
   | 'childrenMarkdownRemark___frontmatter___topics'
   | 'childrenMarkdownRemark___frontmatter___emoji'
   | 'childrenMarkdownRemark___frontmatter___type'
@@ -1467,6 +1470,7 @@ export type FileFieldsEnum =
   | 'childMarkdownRemark___frontmatter___site'
   | 'childMarkdownRemark___frontmatter___canonical'
   | 'childMarkdownRemark___frontmatter___siteTags'
+  | 'childMarkdownRemark___frontmatter___ogImageTitle'
   | 'childMarkdownRemark___frontmatter___topics'
   | 'childMarkdownRemark___frontmatter___emoji'
   | 'childMarkdownRemark___frontmatter___type'
@@ -3267,6 +3271,7 @@ export type MarkdownRemarkFieldsEnum =
   | 'frontmatter___site'
   | 'frontmatter___canonical'
   | 'frontmatter___siteTags'
+  | 'frontmatter___ogImageTitle'
   | 'frontmatter___topics'
   | 'frontmatter___emoji'
   | 'frontmatter___type'
@@ -3442,7 +3447,7 @@ export type BlogPostBySlugQuery = { site?: { buildTime?: any | null } | null, ma
 export type GatsbyNodeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GatsbyNodeQuery = { allMarkdownRemark: { edges: Array<{ node: { id: string, excerpt?: string | null, frontmatter?: { canonical?: string | null, date?: any | null, site?: string | null, slug?: string | null, tags?: Array<string | null> | null, title?: string | null, topics?: Array<string | null> | null, siteTags?: Array<string | null> | null, emoji?: string | null, type?: string | null } | null } }> } };
+export type GatsbyNodeQuery = { allMarkdownRemark: { edges: Array<{ node: { id: string, excerpt?: string | null, frontmatter?: { canonical?: string | null, ogImageTitle?: string | null, date?: any | null, site?: string | null, slug?: string | null, tags?: Array<string | null> | null, title?: string | null, topics?: Array<string | null> | null, siteTags?: Array<string | null> | null, emoji?: string | null, type?: string | null } | null } }> } };
 
 export type GatsbyImageSharpFixedFragment = { base64?: string | null, width: number, height: number, src: string, srcSet: string };
 

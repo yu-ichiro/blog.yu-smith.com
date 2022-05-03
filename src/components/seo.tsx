@@ -17,7 +17,8 @@ const Seo: React.FC<{
   meta?: MetaProps[]
   link?: LinkProps[]
   title: string
-}> = ({ description, lang, meta = [], link = [], title }) => {
+  slug?: string
+}> = ({ description, lang, meta = [], link = [], title, slug }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -43,6 +44,10 @@ const Seo: React.FC<{
       property: `og:title`,
       content: title,
     },
+    ...!slug ? [] : [{
+      property: `og:image`,
+      content: `https://blog.yu-smith.com/images/${slug}.png`,
+    }],
     {
       property: `og:description`,
       content: metaDescription,

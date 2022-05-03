@@ -56,7 +56,7 @@ const Post: GatsbyPage<BlogPostBySlugQuery, PostContext> = ({
 
   return (
     <Layout>
-      <Seo title={pageContext.frontmatter.title} link={link} />
+      <Seo title={pageContext.frontmatter.title} link={link} slug={pageContext.frontmatter.slug} />
       <header>
         <h1>{pageContext.frontmatter.title}</h1>
         {canonicalLink}
@@ -78,7 +78,7 @@ const Post: GatsbyPage<BlogPostBySlugQuery, PostContext> = ({
         <section style={{ zoom: "80%", padding: "2rem 0" }}>
           <h2>関連記事</h2>
           {pageContext.related.map(ensurePageInfo).map(info => (
-            <PageInfoComponent pageInfo={info}/>
+            <PageInfoComponent pageInfo={info} key={info.slug}/>
           ))}
         </section>
       )}

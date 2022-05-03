@@ -46,6 +46,10 @@ export type PageInfo = {
   title: string
   excerpt: string
   tags: string[]
+  og: {
+    image?: string
+    imageTitle?: string
+  }
 }
 export const remarkToPageInfo = (edge: {
   node: Partial<MarkdownRemark>
@@ -58,6 +62,10 @@ export const remarkToPageInfo = (edge: {
     tags:
       edge.node.frontmatter?.tags?.filter((item): item is string => !!item) ??
       [],
+    og: {
+      image: undefined,
+      imageTitle: edge.node.frontmatter?.ogImageTitle as string | undefined
+    }
   }
 }
 
@@ -68,5 +76,6 @@ export const ensurePageInfo = (info: Partial<PageInfo>): PageInfo => {
     title: info.title ?? "",
     excerpt: info.excerpt ?? "",
     tags: info.tags?.filter((item): item is string => !!item) ?? [],
+    og: info.og ?? {}
   }
 }

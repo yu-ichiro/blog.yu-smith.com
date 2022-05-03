@@ -2,6 +2,7 @@ import type { GatsbyNode } from "gatsby"
 import path from "path"
 import { GatsbyNodeQuery, MarkdownRemarkEdge } from "./gql"
 import { Frontmatter, remarkToPageInfo } from "./types"
+import { generate } from "./gatsby-generate";
 
 const graphql = String.raw
 
@@ -23,6 +24,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
             excerpt
             frontmatter {
               canonical
+              ogImageTitle
               date
               site
               slug
@@ -152,4 +154,10 @@ export const createPages: GatsbyNode["createPages"] = async ({
       ),
     },
   })
+
+  // image generation
+  const generateImage = true
+  if (generateImage) {
+    await generate(posts.map(remarkToPageInfo))
+  }
 }

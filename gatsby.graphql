@@ -591,6 +591,7 @@ type MarkdownRemarkFrontmatter {
         locale: String
     ): Date
     emoji: String
+    ogImageTitle: String
     site: String
     siteTags: [String]
     slug: String
@@ -1126,6 +1127,7 @@ enum FileFieldsEnum {
     childMarkdownRemark___frontmatter___canonical
     childMarkdownRemark___frontmatter___date
     childMarkdownRemark___frontmatter___emoji
+    childMarkdownRemark___frontmatter___ogImageTitle
     childMarkdownRemark___frontmatter___site
     childMarkdownRemark___frontmatter___siteTags
     childMarkdownRemark___frontmatter___slug
@@ -1262,6 +1264,7 @@ enum FileFieldsEnum {
     childrenMarkdownRemark___frontmatter___canonical
     childrenMarkdownRemark___frontmatter___date
     childrenMarkdownRemark___frontmatter___emoji
+    childrenMarkdownRemark___frontmatter___ogImageTitle
     childrenMarkdownRemark___frontmatter___site
     childrenMarkdownRemark___frontmatter___siteTags
     childrenMarkdownRemark___frontmatter___slug
@@ -1662,6 +1665,7 @@ enum MarkdownRemarkFieldsEnum {
     frontmatter___canonical
     frontmatter___date
     frontmatter___emoji
+    frontmatter___ogImageTitle
     frontmatter___site
     frontmatter___siteTags
     frontmatter___slug
@@ -2553,6 +2557,7 @@ input MarkdownRemarkFrontmatterFilterInput {
     canonical: StringQueryOperatorInput
     date: DateQueryOperatorInput
     emoji: StringQueryOperatorInput
+    ogImageTitle: StringQueryOperatorInput
     site: StringQueryOperatorInput
     siteTags: StringQueryOperatorInput
     slug: StringQueryOperatorInput

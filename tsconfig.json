@@ -114,6 +114,8 @@
     "./src/**/*",
     "./gatsby-node.ts",
     "./gatsby-config.ts",
+    "./gatsby-generate.ts",
+     "catchy-image.d.ts",
     "./plugins/**/*"
   ]
 }

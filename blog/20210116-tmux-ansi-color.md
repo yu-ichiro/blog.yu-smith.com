@@ -7,6 +7,11 @@ tags:
   - tmux
   - ansi
 
+ogImageTitle: |
+    tmux使っている時だけ一部の
+    ANSIカラーが表示されていなかった
+    たった1文字のミス
+
 site: zenn
 canonical: https://zenn.dev/yuichiro/articles/3d82b4ddcd255e 
 topics: 
