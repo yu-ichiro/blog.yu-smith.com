@@ -1,10 +1,16 @@
 declare module "catchy-image" {
+  import { Canvas } from "canvas"
+
+  export type Context = ReturnType<Canvas['getContext']>
+  export type Color = string | CanvasGradient | CanvasPattern
+  export type ColorFn = (ctx: Context) => Color
+
   export type TextStyle = {
     paddingTop: number
     paddingBottom: number
     paddingLeft: number
     paddingRight: number
-    fontColor: string
+    fontColor: Color | ColorFn
     fontWeight: string
     fontSize: number
     fontFamily: string
@@ -19,7 +25,7 @@ declare module "catchy-image" {
     image: {
       width: number
       height: number
-      backgroundColor: string
+      backgroundColor: Color | ColorFn
       backgroundImage?: string
     }
     style: {
@@ -36,6 +42,8 @@ declare module "catchy-image" {
       family: string
       weight?: string
     }[]
+    preProcess?: (ctx: Context) => void
+    postProcess?: (ctx: Context) => void
   }
 
   export const generate: (options: Options) => Promise<string>
