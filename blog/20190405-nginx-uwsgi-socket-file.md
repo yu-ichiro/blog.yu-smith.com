@@ -69,8 +69,6 @@ d       /var/run/app            0755    app     app     -
 
 # 参考
 [python - Got 'No such file or directory' error while configuring nginx and uwsgi - Stack Overflow](https://stackoverflow.com/questions/32974204/got-no-such-file-or-directory-error-while-configuring-nginx-and-uwsgi)
-
 [nginx unix domain socket error - Server Fault](https://serverfault.com/questions/463993/nginx-unix-domain-socket-error/464025#464025)
-
 [CentOS 7 : /var/run 直下に作ったディレクトリが消えないようにする - eTuts+ Server Tutorial](https://server.etutsplus.com/centos-7-tmpfiles-d-deleted-outdate-files/)
 

@@ -48,6 +48,7 @@ const config: GatsbyConfig = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          `gatsby-remark-hard-breaks`,
           `gatsby-remark-prismjs-title`,
           // `gatsby-remark-prismjs-copy-button`,  // wait until fix
           {

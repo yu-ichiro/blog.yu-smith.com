@@ -6732,6 +6732,13 @@ gatsby-react-router-scroll@^5.11.0:
     "@babel/runtime" "^7.15.4"
     prop-types "^15.7.2"
 
+gatsby-remark-hard-breaks@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-hard-breaks/-/gatsby-remark-hard-breaks-1.0.0.tgz#014b3a8e37d53d7a221246d795d9578a1a425b4b"
+  integrity sha512-op0VhWEPcV8/8GWXlD11VeGfzI66G5xJgR7VxhqBu0aB3icjZAzOlvHJoOmWFlxgvOg2KpUA0jtIhVadCbwqiA==
+  dependencies:
+    remark-breaks "^2.0.0"
+
 gatsby-remark-prismjs-copy-button@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/gatsby-remark-prismjs-copy-button/-/gatsby-remark-prismjs-copy-button-0.3.1.tgz#5d772d64b4fce0bee417c7ea7fe39b5a34403d62"
@@ -11399,6 +11406,13 @@ relay-runtime@12.0.0:
     "@babel/runtime" "^7.0.0"
     fbjs "^3.0.0"
     invariant "^2.2.4"
+
+remark-breaks@^2.0.0:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/remark-breaks/-/remark-breaks-2.0.2.tgz#55fdec6c7da84f659aa7fdb1aa95b632870cee8d"
+  integrity sha512-LsQnPPQ7Fzp9RTjj4IwdEmjPOr9bxe9zYKWhs9ZQOg9hMg8rOfeeqQ410cvVdIK87Famqza1CKRxNkepp2EvUA==
+  dependencies:
+    unist-util-visit "^2.0.0"
 
 remark-footnotes@^3.0.0:
   version "3.0.0"
