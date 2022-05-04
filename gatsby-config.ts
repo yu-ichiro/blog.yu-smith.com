@@ -56,7 +56,8 @@ const config: GatsbyConfig = {
               classPrefix: `language-`,
               inlineCodeMarker: null,
               aliases: {
-                python3: "python"
+                python3: "python",
+                zsh: "bash",
               },
               showLineNumbers: true,
               noInlineHighlight: true,
