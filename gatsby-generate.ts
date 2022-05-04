@@ -21,15 +21,15 @@ export const generate = async (posts: PageInfo[]) => {
   const iconFilePath = path.resolve("src/assets/images", "icon.png")
 
   const fontMain = {
-    path: path.resolve("src/assets/fonts", "KleeOne-SemiBold.ttf"),
-    family: "Klee One",
-    weight: "bold",
+    path: path.resolve("src/assets/fonts", "MPLUSRounded1c-Medium.ttf"),
+    family: "M PLUS Rounded 1c",
+    weight: "500",
   }
 
   const fontSub = {
-    path: path.resolve("src/assets/fonts", "KleeOne-Regular.ttf"),
-    family: "Klee One",
-    weight: "normal",
+    path: path.resolve("src/assets/fonts", "MPLUSRounded1c-Regular.ttf"),
+    family: "M PLUS Rounded 1c",
+    weight: "400",
   }
 
   logger.info("[gatsby-generate] writing og images")
