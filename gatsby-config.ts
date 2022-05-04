@@ -9,6 +9,12 @@ const config: GatsbyConfig = {
     siteUrl: `https://blog.yu-smith.com/`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [`G-F7J5YWDFC6`],
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     {
