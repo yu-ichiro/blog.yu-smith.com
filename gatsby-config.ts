@@ -23,8 +23,8 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `yuichiro.__blog__`,
+        short_name: `__blog__`,
         start_url: `/`,
         background_color: `#574cf1`,
         // This will impact how browsers show your PWA/website
@@ -37,13 +37,33 @@ const config: GatsbyConfig = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
-    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `markdown`,
         path: path.resolve(`blog`),
       },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          `gatsby-remark-prismjs-title`,
+          // `gatsby-remark-prismjs-copy-button`,  // wait until fix
+          {
+            resolve: "gatsby-remark-prismjs",
+            options: {
+              classPrefix: `language-`,
+              inlineCodeMarker: null,
+              aliases: {
+                python3: "python"
+              },
+              showLineNumbers: true,
+              noInlineHighlight: true,
+            }
+          }
+        ],
+      }
     },
     {
       resolve: `gatsby-plugin-graphql-codegen`,

@@ -31,7 +31,7 @@ OSにプリインストールされているだけでビルトインではない
 
 まずは厳かに、
 
-```zsh:Terminal
+```zsh:title=Terminal
 % brew info vim
 vim: stable 7.4.488, HEAD
 http://www.vim.org/
@@ -45,7 +45,7 @@ From: https://github.com/Homebrew/homebrew/blob/master/Library/Formula/vim.rb
 
 えいや。
 
-```zsh:Terminal
+```zsh:title=Terminal
 % brew install vim --with-lua
 ==> Installing vim dependency: lua
 ==> Downloading https://downloads.sf.net/project/machomebrew/Bottles/lua-5.2.3_1
@@ -69,7 +69,7 @@ From: https://github.com/Homebrew/homebrew/blob/master/Library/Formula/vim.rb
 
 `echo $PATH | tr ":" "\n"`を実行し
 
-```zsh:Terminal
+```zsh:title=Terminal
 % echo $PATH | tr ":" "\n"
 /usr/local/bin
 /usr/bin
@@ -87,7 +87,7 @@ From: https://github.com/Homebrew/homebrew/blob/master/Library/Formula/vim.rb
 
 一旦Terminalを閉じるか、別のウインドウを開いて、vimと入力し、バージョンが変わっていれば成功！
 
-```zsh:Terminal
+```zsh:title=Terminal
 1 
 ~                                                                               
 ~                                                                               

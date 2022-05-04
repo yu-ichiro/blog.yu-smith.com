@@ -21,7 +21,7 @@ siteTags:
 # groff Fatal error
 先日「[vimをアップデートすると同時にHomebrew管理に移行する](http://qiita.com/yu-ichiro/items/c9db44671701e7f485af)」という投稿をしたんですが、その後vimのmanページを開こうとすると、
 
-```zsh:Terminal
+```zsh:title=Terminal
 $ man vim
 /usr/bin/groff: can't find `DESC' file
 /usr/bin/groff:fatal error: invalid device `nippon'
@@ -66,7 +66,7 @@ manの設定は/etc/man.confにあるので、
 
 95行目付近に`JNROFF`から始まる行があるので、
 
-```diff:/etc/man.conf
+```diff:title=/etc/man.conf
 - JNROFF /usr/bin/groff -Tnippon -mandocj -c
 + JNROFF /usr/local/bin/groff -Dutf8 -Tutf8 -mandoc -mja -E
 ```
@@ -75,7 +75,7 @@ manの設定は/etc/man.confにあるので、
 
 次に105~106行目付近の`PAGER`、`BROWSER`それぞれを
 
-```diff:/etc/man.conf
+```diff:title=/etc/man.conf
 - PAGER           /usr/bin/less -is
 + PAGER           /usr/bin/less -isr
 - BROWSER         /usr/bin/less -is
@@ -87,7 +87,7 @@ manの設定は/etc/man.confにあるので、
 コメントでいただきましたが、
 アップデートの度に/etc/man.confが上書きされるらしく？毎回これをすることになるらしいので簡単なpatchを、、
 
-```zsh:patch.zsh
+```zsh:title=patch.zsh
 PROFILE=~/.zprofile  # 自分が使うシェルのprofileに変更
 
 cp /etc/man.conf ~/.man.conf
@@ -101,7 +101,7 @@ echo 'alias man="man -C ~/.man.conf"' >> $PROFILE
 
 さて用意が出来たので、`man vim`など、日本語版のmanが用意されているコマンドを見てみましょう。
 
-```zsh:Terminal
+```zsh:title=Terminal
 VIM(1)               General Commands Manual                VIM(1)
 
 名前

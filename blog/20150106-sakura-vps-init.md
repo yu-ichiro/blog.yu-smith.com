@@ -46,7 +46,7 @@ $ chmod 700 .ssh/
 
 ローカルに戻り
 
-```zsh:Terminal
+```zsh:title=Terminal
 $ cd ~/.ssh
 $ ssh-keygen
 $ chmod 600 id_rsa*
@@ -55,7 +55,7 @@ $ scp id_rsa.pub hoge@vps.com:~/.ssh/authorized_keys
 
 終わったらローカルから
 
-```zsh:Terminal
+```zsh:title=Terminal
 $ ssh -i ~/.ssh/id_rsa hoge@vps.com
 ```
 でログインできれば完了。
@@ -69,7 +69,7 @@ sshdに関する設定を細かく書く。徐々にセキュリティを上げ�
 $ sudo vim /etc/ssh/sshd_config
 ```
 
-```bash:sshd_config
+```bash:title=sshd_config
 - #Port 22
 + Port 12345
 
@@ -82,7 +82,7 @@ $ sudo vim /etc/ssh/sshd_config
 
 ローカルで`~/.ssh/configに以下を追記
 
-```zsh:config
+```zsh:title=config
 Host vps.com
 Hostname vps.com
 User hoge
@@ -99,7 +99,7 @@ Identityfile ~/.ssh/id_rsa
 
 スクリプトで動的に管理するのが良さそうだけど、まあ最初は決め打ちで。
 
-```bash:/etc/sysconfig/iptables
+```bash:title=/etc/sysconfig/iptables
 #### MAIN SETTINGS START ####
 *filter
 :INPUT    DROP    [0:0]
@@ -293,7 +293,7 @@ old: /etc/syslog.conf
 hayari: /etc/rsyslog.conf
 
 
-```bash:rsyslog.conf
+```bash:title=rsyslog.conf
 
 + *kern.debug                                           /var/log/iptables
 

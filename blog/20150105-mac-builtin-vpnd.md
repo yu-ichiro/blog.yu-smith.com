@@ -46,7 +46,7 @@ PPPDの設定は`/etc/ppp/`に置きます。
 
 `/etc/ppp/users.plist`に
 
-```xml:users.plist
+```xml:title=users.plist
 <?xml version="1.0" encoding="UTF-8"?>
  <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
  <plist version="1.0">
@@ -72,7 +72,7 @@ PPPDの設定は`/etc/ppp/`に置きます。
 
 root権限で起動して欲しいので、/Library/LaunchDaemonsに`com.apple.vpnd.plist`をパーミッション:644 root:wheel で作成します。
 
-```xml:com.apple.vpnd.plist
+```xml:title=com.apple.vpnd.plist
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">

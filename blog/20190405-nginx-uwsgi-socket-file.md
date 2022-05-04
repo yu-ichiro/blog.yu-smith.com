@@ -22,7 +22,7 @@ CentOS 7ではプログラムごとに`/tmp`が別に用意されるらしく、
 
 # それぞれの設定
 
-```nginx:nginx.conf
+```nginx:title=nginx.conf
 server {
   ...
   location / {
@@ -33,7 +33,7 @@ server {
 }
 ```
 
-```ini:uwsgi.ini
+```ini:title=uwsgi.ini
 [uwsgi]
 
 # ...
@@ -52,7 +52,6 @@ chmod-socket = 666
 logto = /var/log/uwsgi/app.log
 
 # ...
-
 ```
 
 `/run/uwsgi`ではなく`/run/app`にしているのは`uwsgi`とは別のユーザーを使いたいから。
@@ -62,7 +61,7 @@ sudo mkdir -p /run/app
 sudo chown app:app /run/app
 ```
 
-```:/etc/tmpfiles.d/app.conf
+```conf:title=/etc/tmpfiles.d/app.conf
 #Type   Path                    Mode    UID     GID     Age     Argument
 d       /var/run/app            0755    app     app     -
 ```
@@ -70,6 +69,7 @@ d       /var/run/app            0755    app     app     -
 
 # 参考
 [python - Got 'No such file or directory' error while configuring nginx and uwsgi - Stack Overflow](https://stackoverflow.com/questions/32974204/got-no-such-file-or-directory-error-while-configuring-nginx-and-uwsgi)
+
 [nginx unix domain socket error - Server Fault](https://serverfault.com/questions/463993/nginx-unix-domain-socket-error/464025#464025)
 
 [CentOS 7 : /var/run 直下に作ったディレクトリが消えないようにする - eTuts+ Server Tutorial](https://server.etutsplus.com/centos-7-tmpfiles-d-deleted-outdate-files/)

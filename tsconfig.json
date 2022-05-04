@@ -115,6 +115,7 @@
     "./gatsby-node.ts",
     "./gatsby-config.ts",
     "./gatsby-generate.ts",
+    "./gatsby-browser.ts",
      "catchy-image.d.ts",
     "./plugins/**/*"
   ]

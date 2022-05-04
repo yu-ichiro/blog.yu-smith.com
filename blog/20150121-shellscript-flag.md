@@ -12,7 +12,7 @@ siteTags:
 ---
 Shellでフラグを使いたい！という場合、今まではTest文のANDチェーンで動かしていましたが、`true`コマンドと`false`コマンドを見つけたのでメモります。
 
-```zsh:Terminal
+```zsh:title=Terminal
 local powerline_enabled
 powerline_enabled=true
 
