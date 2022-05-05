@@ -1,5 +1,5 @@
 diff --git a/node_modules/catchy-image/lib/index.js b/node_modules/catchy-image/lib/index.js
-index 457ce45..78c7b26 100644
+index 457ce45..549e0a2 100644
 --- a/node_modules/catchy-image/lib/index.js
 +++ b/node_modules/catchy-image/lib/index.js
 @@ -108,6 +108,17 @@ function getImage(fileData) {
@@ -20,43 +20,94 @@ index 457ce45..78c7b26 100644
  /**
   * Generate Open Graph images.
   *
-@@ -132,7 +143,10 @@ async function generateImage(options) {
+@@ -132,46 +143,55 @@ async function generateImage(options) {
    const canvas = createCanvas(options.image.width, options.image.height);
    const ctx = canvas.getContext('2d'); // Draw a background
  
 -  ctx.fillStyle = options.image.backgroundColor;
+-  ctx.fillRect(0, 0, options.image.width, options.image.height);
 +  if ('preProcess' in options && typeof options.preProcess === "function")
 +    options.preProcess(ctx)
 +
-+  ctx.fillStyle = processColor(options.image.backgroundColor, ctx);
-   ctx.fillRect(0, 0, options.image.width, options.image.height);
++  if (!('skipBackground' in options && options.skipBackground)) {
++    ctx.fillStyle = processColor(options.image.backgroundColor, ctx);
++    ctx.fillRect(0, 0, options.image.width, options.image.height);
++
++    if ('backgroundImage' in options.image && options.image.backgroundImage) {
++      const imageFile = await fs.readFile(options.image.backgroundImage);
++      const image = getImage(imageFile);
++      ctx.drawImage(image, 0, 0, options.image.width, options.image.height);
++    }
++  }
  
-   if ('backgroundImage' in options.image && options.image.backgroundImage) {
-@@ -159,19 +173,23 @@ async function generateImage(options) {
-     x,
-     y
-   }) => {
+-  if ('backgroundImage' in options.image && options.image.backgroundImage) {
+-    const imageFile = await fs.readFile(options.image.backgroundImage);
++
++  if (!('skipTitle' in options && options.skipTitle)) {
++    const { lines } = calcurateTextPositionIntoRectangle({
++      ctx,
++      text: options.meta.title,
++      style: {
++        ...options.style.title
++      },
++      rect: {
++        width: options.image.width - options.style.title.paddingLeft - options.style.title.paddingRight,
++        height: options.image.height - options.style.title.paddingTop - options.style.title.paddingBottom
++      }
++    }); // Draw title texts
++
++    lines.forEach(({ text, x, y }) => {
++      ctx.fillStyle = processColor(options.style.title.fontColor, ctx);
++      ctx.fillText(text, x, y);
++    }); // Draw an author text
++  }
++
++  if (!('skipAuthor' in options && options.skipAuthor)) {
++    ctx.font = getFontStyle({ ...options.style.author,
++      fontFamily: options.style.author.fontFamily
++    });
++    ctx.fillStyle = processColor(options.style.author.fontColor, ctx);
++    ctx.fillText(options.meta.author, 232, options.image.height - 72); // Draw a icon
++
++    const imageFile = await fs.readFile(require.resolve(options.iconFile));
+     const image = getImage(imageFile);
+-    ctx.drawImage(image, 0, 0, options.image.width, options.image.height);
++    ctx.drawImage(image, 128, options.image.height - 128, 80, 80);
+   }
+ 
+-  const {
+-    lines
+-  } = calcurateTextPositionIntoRectangle({
+-    ctx,
+-    text: options.meta.title,
+-    style: { ...options.style.title
+-    },
+-    rect: {
+-      width: options.image.width - options.style.title.paddingLeft - options.style.title.paddingRight,
+-      height: options.image.height - options.style.title.paddingTop - options.style.title.paddingBottom
+-    }
+-  }); // Draw title texts
+-
+-  lines.forEach(({
+-    text,
+-    x,
+-    y
+-  }) => {
 -    ctx.fillStyle = options.style.title.fontColor;
-+    ctx.fillStyle = processColor(options.style.title.fontColor, ctx);
-     ctx.fillText(text, x, y);
-   }); // Draw an author text
- 
-   ctx.font = getFontStyle({ ...options.style.author,
-     fontFamily: options.style.author.fontFamily
-   });
+-    ctx.fillText(text, x, y);
+-  }); // Draw an author text
+-
+-  ctx.font = getFontStyle({ ...options.style.author,
+-    fontFamily: options.style.author.fontFamily
+-  });
 -  ctx.fillStyle = options.style.author.fontColor;
 -  ctx.fillText(options.meta.author, 260, options.image.height - 90); // Draw a icon
-+  ctx.fillStyle = processColor(options.style.author.fontColor, ctx);
-+  ctx.fillText(options.meta.author, 232, options.image.height - 72); // Draw a icon
- 
-   const imageFile = await fs.readFile(require.resolve(options.iconFile));
-   const image = getImage(imageFile);
--  ctx.drawImage(image, 150, options.image.height - 150, 80, 80);
-+  ctx.drawImage(image, 128, options.image.height - 128, 80, 80);
-+
 +  if ('postProcess' in options && typeof options.postProcess === "function")
 +    options.postProcess(ctx)
-+
+ 
+-  const imageFile = await fs.readFile(require.resolve(options.iconFile));
+-  const image = getImage(imageFile);
+-  ctx.drawImage(image, 150, options.image.height - 150, 80, 80);
    const buffer = canvas.toBuffer();
  
    try {

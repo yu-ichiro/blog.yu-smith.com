@@ -63,6 +63,7 @@ const Post: GatsbyPage<BlogPostBySlugQuery, PostContext> = ({
     <Layout>
       <Seo
         title={pageContext.frontmatter.title}
+        description={data.markdownRemark?.excerpt ?? undefined}
         link={link}
         slug={pageContext.frontmatter.slug}
       />
@@ -122,6 +123,7 @@ export const pageQuery = (Post.pageQuery = graphql`
     }
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
       html
+      excerpt
     }
   }
 `)

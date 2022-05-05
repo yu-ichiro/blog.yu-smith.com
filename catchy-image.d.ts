@@ -44,6 +44,9 @@ declare module "catchy-image" {
     }[]
     preProcess?: (ctx: Context) => void
     postProcess?: (ctx: Context) => void
+    skipBackground?: boolean
+    skipTitle?: boolean
+    skipAuthor?: boolean
   }
 
   export const generate: (options: Options) => Promise<string>

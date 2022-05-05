@@ -3442,7 +3442,7 @@ export type BlogPostBySlugQueryVariables = Exact<{
 }>;
 
 
-export type BlogPostBySlugQuery = { site?: { buildTime?: any | null } | null, markdownRemark?: { html?: string | null } | null };
+export type BlogPostBySlugQuery = { site?: { buildTime?: any | null } | null, markdownRemark?: { html?: string | null, excerpt?: string | null } | null };
 
 export type GatsbyNodeQueryVariables = Exact<{ [key: string]: never; }>;
 

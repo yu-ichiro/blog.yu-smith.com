@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "author": "Yuichiro Luke Smith <contact@yu-smith.com>",
   "dependencies": {
-    "@fontsource/m-plus-rounded-1c": "^4.5.8",
+    "@fontsource/m-plus-1p": "^4.5.8",
     "catchy-image": "^0.1.6",
     "gatsby": "^4.11.3",
     "gatsby-plugin-gatsby-cloud": "^4.11.1",

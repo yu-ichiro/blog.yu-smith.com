@@ -1128,10 +1128,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/m-plus-rounded-1c@^4.5.8":
+"@fontsource/m-plus-1p@^4.5.8":
   version "4.5.8"
-  resolved "https://registry.yarnpkg.com/@fontsource/m-plus-rounded-1c/-/m-plus-rounded-1c-4.5.8.tgz#94a683402dbb37d6f277eaf00c6b47e062980909"
-  integrity sha512-zMSOnEQ8243W5lubu9KiXJTG/kNgAWtbLgCAbsXf10JZdIC92Y2fTqZIE+Fu5rW8/J/RsbbiYgKkkMUAkVuQfQ==
+  resolved "https://registry.yarnpkg.com/@fontsource/m-plus-1p/-/m-plus-1p-4.5.8.tgz#62faa143cab8931ece8650e06a24157f84c9946e"
+  integrity sha512-KsNvrYsTXKp6HM1whKeQxNU8PeIvWImUXkOE+Su2dJW1GcG473GcJiIf8tXJL2EcojEBhcbKBedwp4TL51urjQ==
 
 "@gatsbyjs/parcel-namer-relative-to-cwd@0.0.2":
   version "0.0.2"

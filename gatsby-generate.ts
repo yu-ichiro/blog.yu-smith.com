@@ -21,19 +21,19 @@ export const generate = async (posts: PageInfo[]) => {
   const iconFilePath = path.resolve("src/assets/images", "icon.png")
 
   const fontMain = {
-    path: path.resolve("src/assets/fonts", "MPLUSRounded1c-Medium.ttf"),
-    family: "M PLUS Rounded 1c",
-    weight: "500",
+    path: path.resolve("src/assets/fonts", "MPLUS1p-Medium.ttf"),
+    family: "main",
+    weight: "bold",
   }
 
   const fontSub = {
-    path: path.resolve("src/assets/fonts", "MPLUSRounded1c-Regular.ttf"),
-    family: "M PLUS Rounded 1c",
-    weight: "400",
+    path: path.resolve("src/assets/fonts", "MPLUS1p-Regular.ttf"),
+    family: "sub",
+    weight: "normal",
   }
 
   logger.info("[gatsby-generate] writing og images")
-  const total = posts.length
+  const total = posts.length + 1
   const _cache: Record<string, number> = {}
 
   const gradientFn: ColorFn = (ctx) => {
@@ -91,10 +91,65 @@ export const generate = async (posts: PageInfo[]) => {
           postProcess(ctx) {
             ctx.font = `${fontMain.weight} 64px ${fontMain.family}`
             ctx.fillStyle = "#ffffff"
-            ctx.fillText("yuichiro.__blog__", 48, 80)
+            ctx.fillText("yuichiro.__blog__", 64, 96)
           }
         })
       )
+      .concat([
+        catchy.generate({
+          skipAuthor: true,
+          skipTitle: true,
+          fontFile: [fontMain],
+          iconFile: "",
+          image: {
+            backgroundColor: gradientFn,
+            height: 630,
+            width: 1200,
+          },
+          meta: {
+            author: "",
+            title: "",
+          },
+          style: {
+            title: {
+              paddingTop: NaN,
+              paddingBottom: NaN,
+              paddingLeft: NaN,
+              paddingRight: NaN,
+              fontWeight: "",
+              fontSize: NaN,
+              fontFamily: "",
+              fontColor: "",
+            },
+            author: {
+              paddingTop: NaN,
+              paddingBottom: NaN,
+              paddingLeft: NaN,
+              paddingRight: NaN,
+              fontWeight: "",
+              fontSize: NaN,
+              fontFamily: "",
+              fontColor: "",
+            },
+          },
+          output: {
+            directory: imagesDirPath,
+            fileName: `default.png`,
+          },
+          postProcess(ctx) {
+            const text = "yuichiro.__blog__"
+
+            ctx.font = `${fontMain.weight} 64px ${fontMain.family}`
+            ctx.fillStyle = "#000000"
+            const measurement = ctx.measureText(text)
+            ctx.fillText(
+              text,
+              (1200 - measurement.width) / 2,
+              630 * (.2 + (.8 - (measurement.actualBoundingBoxAscent + measurement.actualBoundingBoxDescent)/630) / 2)
+            )
+          }
+        })
+      ])
       .map(promise =>
         promise.then(path => {
           _cache[path] = 1

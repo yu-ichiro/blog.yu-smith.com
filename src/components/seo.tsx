@@ -44,10 +44,10 @@ const Seo: React.FC<{
       property: `og:title`,
       content: title,
     },
-    ...!slug ? [] : [{
+    {
       property: `og:image`,
-      content: `https://blog.yu-smith.com/images/${slug}.png`,
-    }],
+      content: `https://blog.yu-smith.com/images/${slug ?? 'default'}.png`,
+    },
     {
       property: `og:description`,
       content: metaDescription,
