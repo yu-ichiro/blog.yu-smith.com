@@ -16,9 +16,12 @@ const IndexPage: GatsbyPage<IndexPageQuery> = ({ data }) => (
   </Layout>
 )
 
-export const pageQuery = IndexPage.pageQuery = graphql`
+export const pageQuery = (IndexPage.pageQuery = graphql`
   query IndexPage {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: [DESC] }) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: [DESC] }
+      filter: { frontmatter: { draft: { ne: true } } }
+    ) {
       edges {
         node {
           excerpt
@@ -32,6 +35,6 @@ export const pageQuery = IndexPage.pageQuery = graphql`
       }
     }
   }
-`
+`)
 
 export default IndexPage

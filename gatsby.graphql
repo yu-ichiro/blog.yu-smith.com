@@ -590,6 +590,7 @@ type MarkdownRemarkFrontmatter {
         "Configures the locale Moment.js will use to format the date."
         locale: String
     ): Date
+    draft: Boolean
     emoji: String
     ogImageTitle: String
     site: String
@@ -1126,6 +1127,7 @@ enum FileFieldsEnum {
     childMarkdownRemark___fileAbsolutePath
     childMarkdownRemark___frontmatter___canonical
     childMarkdownRemark___frontmatter___date
+    childMarkdownRemark___frontmatter___draft
     childMarkdownRemark___frontmatter___emoji
     childMarkdownRemark___frontmatter___ogImageTitle
     childMarkdownRemark___frontmatter___site
@@ -1263,6 +1265,7 @@ enum FileFieldsEnum {
     childrenMarkdownRemark___fileAbsolutePath
     childrenMarkdownRemark___frontmatter___canonical
     childrenMarkdownRemark___frontmatter___date
+    childrenMarkdownRemark___frontmatter___draft
     childrenMarkdownRemark___frontmatter___emoji
     childrenMarkdownRemark___frontmatter___ogImageTitle
     childrenMarkdownRemark___frontmatter___site
@@ -1664,6 +1667,7 @@ enum MarkdownRemarkFieldsEnum {
     fileAbsolutePath
     frontmatter___canonical
     frontmatter___date
+    frontmatter___draft
     frontmatter___emoji
     frontmatter___ogImageTitle
     frontmatter___site
@@ -2556,6 +2560,7 @@ input MarkdownRemarkFilterListInput {
 input MarkdownRemarkFrontmatterFilterInput {
     canonical: StringQueryOperatorInput
     date: DateQueryOperatorInput
+    draft: BooleanQueryOperatorInput
     emoji: StringQueryOperatorInput
     ogImageTitle: StringQueryOperatorInput
     site: StringQueryOperatorInput

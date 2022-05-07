@@ -2,7 +2,8 @@ import type { GatsbyNode } from "gatsby"
 import path from "path"
 import { GatsbyNodeQuery, MarkdownRemarkEdge } from "./gql"
 import { Frontmatter, remarkToPageInfo } from "./types"
-import { generate } from "./gatsby-generate";
+import { generate } from "./gatsby-generate"
+import "./src/lib/arraySplit"
 
 const graphql = String.raw
 
@@ -34,6 +35,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
               siteTags
               emoji
               type
+              draft
             }
           }
         }
@@ -78,10 +80,15 @@ export const createPages: GatsbyNode["createPages"] = async ({
   }
 
   const posts = result.data?.allMarkdownRemark.edges || []
+  const [draftPosts, publicPosts] = posts.split(
+    edge => edge.node.frontmatter?.draft === true
+  )
   const slugToEdgeMapping: Record<string, MarkdownRemarkEdge> =
-    Object.fromEntries(posts.map(edge => [edge.node.frontmatter?.slug, edge]))
-  const globalLatest = posts.slice(0, 6)
-  posts
+    Object.fromEntries(
+      publicPosts.map(edge => [edge.node.frontmatter?.slug, edge])
+    )
+  const globalLatest = publicPosts.slice(0, 6)
+  publicPosts
     .map(edge => {
       const slug = edge.node.frontmatter?.slug
       const tags = edge.node.frontmatter?.tags ?? []
@@ -97,8 +104,8 @@ export const createPages: GatsbyNode["createPages"] = async ({
       const slug = edge.node.frontmatter?.slug
       if (!slug) return
 
-      const prev = posts[i + 1]?.node.frontmatter?.slug
-      const next = posts[i - 1]?.node.frontmatter?.slug
+      const prev = publicPosts[i + 1]?.node.frontmatter?.slug
+      const next = publicPosts[i - 1]?.node.frontmatter?.slug
       const latest = globalLatest
         .filter(edgeLatest => edgeLatest.node.id !== edge.node.id)
         .map(edge => edge.node.frontmatter?.slug)
@@ -127,6 +134,23 @@ export const createPages: GatsbyNode["createPages"] = async ({
         },
       })
     })
+
+  draftPosts.forEach(edge => {
+    const frontmatter = edge.node.frontmatter
+    const slug = edge.node.frontmatter?.slug
+    if (!slug) return
+
+    createPage({
+      path: `/post/${slug}`,
+      component: postPage,
+      context: {
+        slug,
+        frontmatter: frontmatter as Frontmatter,
+        related: [],
+        latest: [],
+      },
+    })
+  })
 
   const tags = getTags()
 
@@ -158,6 +182,6 @@ export const createPages: GatsbyNode["createPages"] = async ({
   // image generation
   const generateImage = true
   if (generateImage) {
-    await generate(posts.map(remarkToPageInfo))
+    await generate([draftPosts, publicPosts].flat().map(remarkToPageInfo))
   }
 }

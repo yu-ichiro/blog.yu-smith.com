@@ -27,7 +27,19 @@ const Post: GatsbyPage<BlogPostBySlugQuery, PostContext> = ({
   data,
   pageContext,
 }) => {
-  const date = new Date(pageContext.frontmatter.date)
+  const draft = pageContext.frontmatter.draft ?? false
+  const date = pageContext.frontmatter.draft
+    ? undefined
+    : new Date(pageContext.frontmatter.date)
+
+  const meta = draft
+    ? [
+        {
+          name: "robots",
+          content: "noindex",
+        },
+      ]
+    : []
 
   const [link, canonicalLink] = ((frontmatter): [LinkProps[], ReactNode] => {
     if (frontmatter.site === "zenn") {
@@ -64,14 +76,15 @@ const Post: GatsbyPage<BlogPostBySlugQuery, PostContext> = ({
       <Seo
         title={pageContext.frontmatter.title}
         description={data.markdownRemark?.excerpt ?? undefined}
-        link={link}
         slug={pageContext.frontmatter.slug}
+        link={link}
+        meta={meta}
       />
       <header>
         <h1>{pageContext.frontmatter.title}</h1>
         {canonicalLink}
         <p style={{ margin: 0, paddingBottom: ".5rem" }}>
-          {date.toLocaleDateString()}&nbsp;
+          {date && date.toLocaleDateString()}&nbsp;
           <a
             href={`https://github.com/yu-ichiro/blog.yu-smith.com/tree/master/blog/${pageContext.frontmatter.slug}.md`}
             target="_blank"
