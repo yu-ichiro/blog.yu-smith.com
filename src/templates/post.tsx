@@ -15,7 +15,8 @@ import {
 } from "../../types"
 import { PageInfoComponent } from "../components/pageInfoComponent"
 
-type PostContext = {
+export type PostPageContext = {
+  slug: string
   frontmatter: Frontmatter
   prev?: PageInfo
   next?: PageInfo
@@ -23,7 +24,7 @@ type PostContext = {
   related: PageInfo[]
 }
 
-const Post: GatsbyPage<BlogPostBySlugQuery, PostContext> = ({
+const Post: GatsbyPage<BlogPostBySlugQuery, PostPageContext> = ({
   data,
   pageContext,
 }) => {

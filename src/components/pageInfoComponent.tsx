@@ -10,13 +10,18 @@ export const PageInfoComponent: React.FC<{ pageInfo: PageInfo }> = ({
   return (
     <section style={{ paddingBottom: "2rem" }}>
       <h2 style={{ margin: 0, paddingBottom: ".75rem" }}>
-        <Link style={{ textDecoration: "none", color: "inherit" }} to={permalink}>
+        <Link
+          style={{ textDecoration: "none", color: "inherit" }}
+          to={permalink}
+        >
           {pageInfo.title}
         </Link>
       </h2>
-      <p style={{ margin: 0, paddingBottom: ".5rem" }}>
-        {pageInfo.date.toLocaleDateString()}
-      </p>
+      {"date" in pageInfo ? (
+        <p style={{ margin: 0, paddingBottom: ".5rem" }}>
+          {pageInfo.date.toLocaleDateString()}
+        </p>
+      ) : null}
       <Tags tags={pageInfo.tags} />
       <p style={{ margin: 0 }}>{pageInfo.excerpt}</p>
       <Link to={permalink}>続きを読む</Link>

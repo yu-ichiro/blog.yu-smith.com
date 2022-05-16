@@ -5,7 +5,7 @@ import Seo from "../components/seo"
 import { ensurePageInfo, GatsbyPage, PageInfo } from "../../types"
 import { PageInfoComponent } from "../components/pageInfoComponent";
 
-type TagPageContext = {
+export type TagPageContext = {
   tag: string
   posts: PageInfo[]
 }

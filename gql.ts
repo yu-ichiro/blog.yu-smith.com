@@ -674,12 +674,12 @@ export type MarkdownRemarkTableOfContentsArgs = {
 export type MarkdownRemarkFrontmatter = {
   title?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
-  date?: Maybe<Scalars['Date']>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
-  site?: Maybe<Scalars['String']>;
-  canonical?: Maybe<Scalars['String']>;
-  siteTags?: Maybe<Array<Maybe<Scalars['String']>>>;
   draft?: Maybe<Scalars['Boolean']>;
+  canonical?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['Date']>;
+  site?: Maybe<Scalars['String']>;
+  siteTags?: Maybe<Array<Maybe<Scalars['String']>>>;
   ogImageTitle?: Maybe<Scalars['String']>;
   topics?: Maybe<Array<Maybe<Scalars['String']>>>;
   emoji?: Maybe<Scalars['String']>;
@@ -1140,12 +1140,12 @@ export type MarkdownRemarkFilterInput = {
 export type MarkdownRemarkFrontmatterFilterInput = {
   title?: InputMaybe<StringQueryOperatorInput>;
   slug?: InputMaybe<StringQueryOperatorInput>;
-  date?: InputMaybe<DateQueryOperatorInput>;
   tags?: InputMaybe<StringQueryOperatorInput>;
-  site?: InputMaybe<StringQueryOperatorInput>;
-  canonical?: InputMaybe<StringQueryOperatorInput>;
-  siteTags?: InputMaybe<StringQueryOperatorInput>;
   draft?: InputMaybe<BooleanQueryOperatorInput>;
+  canonical?: InputMaybe<StringQueryOperatorInput>;
+  date?: InputMaybe<DateQueryOperatorInput>;
+  site?: InputMaybe<StringQueryOperatorInput>;
+  siteTags?: InputMaybe<StringQueryOperatorInput>;
   ogImageTitle?: InputMaybe<StringQueryOperatorInput>;
   topics?: InputMaybe<StringQueryOperatorInput>;
   emoji?: InputMaybe<StringQueryOperatorInput>;
@@ -1403,12 +1403,12 @@ export type FileFieldsEnum =
   | 'childrenMarkdownRemark___id'
   | 'childrenMarkdownRemark___frontmatter___title'
   | 'childrenMarkdownRemark___frontmatter___slug'
-  | 'childrenMarkdownRemark___frontmatter___date'
   | 'childrenMarkdownRemark___frontmatter___tags'
-  | 'childrenMarkdownRemark___frontmatter___site'
-  | 'childrenMarkdownRemark___frontmatter___canonical'
-  | 'childrenMarkdownRemark___frontmatter___siteTags'
   | 'childrenMarkdownRemark___frontmatter___draft'
+  | 'childrenMarkdownRemark___frontmatter___canonical'
+  | 'childrenMarkdownRemark___frontmatter___date'
+  | 'childrenMarkdownRemark___frontmatter___site'
+  | 'childrenMarkdownRemark___frontmatter___siteTags'
   | 'childrenMarkdownRemark___frontmatter___ogImageTitle'
   | 'childrenMarkdownRemark___frontmatter___topics'
   | 'childrenMarkdownRemark___frontmatter___emoji'
@@ -1468,12 +1468,12 @@ export type FileFieldsEnum =
   | 'childMarkdownRemark___id'
   | 'childMarkdownRemark___frontmatter___title'
   | 'childMarkdownRemark___frontmatter___slug'
-  | 'childMarkdownRemark___frontmatter___date'
   | 'childMarkdownRemark___frontmatter___tags'
-  | 'childMarkdownRemark___frontmatter___site'
-  | 'childMarkdownRemark___frontmatter___canonical'
-  | 'childMarkdownRemark___frontmatter___siteTags'
   | 'childMarkdownRemark___frontmatter___draft'
+  | 'childMarkdownRemark___frontmatter___canonical'
+  | 'childMarkdownRemark___frontmatter___date'
+  | 'childMarkdownRemark___frontmatter___site'
+  | 'childMarkdownRemark___frontmatter___siteTags'
   | 'childMarkdownRemark___frontmatter___ogImageTitle'
   | 'childMarkdownRemark___frontmatter___topics'
   | 'childMarkdownRemark___frontmatter___emoji'
@@ -3270,12 +3270,12 @@ export type MarkdownRemarkFieldsEnum =
   | 'id'
   | 'frontmatter___title'
   | 'frontmatter___slug'
-  | 'frontmatter___date'
   | 'frontmatter___tags'
-  | 'frontmatter___site'
-  | 'frontmatter___canonical'
-  | 'frontmatter___siteTags'
   | 'frontmatter___draft'
+  | 'frontmatter___canonical'
+  | 'frontmatter___date'
+  | 'frontmatter___site'
+  | 'frontmatter___siteTags'
   | 'frontmatter___ogImageTitle'
   | 'frontmatter___topics'
   | 'frontmatter___emoji'

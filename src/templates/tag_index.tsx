@@ -6,12 +6,12 @@ import Seo from "../components/seo"
 import { GatsbyPage } from "../../types"
 import { key_to_cmp } from "../lib/cmp"
 
-type TagPageContext = {
+export type TagIndexPageContext = {
   tags: string[]
   postCount: Record<string, number>
 }
 
-const Tag: GatsbyPage<{}, TagPageContext> = ({ pageContext }) => (
+const Tag: GatsbyPage<{}, TagIndexPageContext> = ({ pageContext }) => (
   <Layout>
     <Seo title="タグ一覧" />
     <h1>タグ一覧</h1>

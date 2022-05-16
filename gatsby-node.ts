@@ -5,6 +5,11 @@ import { Frontmatter, remarkToPageInfo } from "./types"
 import { generate } from "./gatsby-generate"
 import "./src/lib/arraySplit"
 
+import type { PostPageContext } from './src/templates/post'
+import type { TagPageContext } from './src/templates/tag'
+import type { TagIndexPageContext } from './src/templates/tag_index'
+import type { DraftIndexPageContext } from './src/templates/draft_index'
+
 const graphql = String.raw
 
 export const createPages: GatsbyNode["createPages"] = async ({
@@ -15,6 +20,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
   const postPage = path.resolve(`src/templates/post.tsx`)
   const tagPage = path.resolve(`src/templates/tag.tsx`)
   const tagIndexPage = path.resolve(`src/templates/tag_index.tsx`)
+  const draftIndexPage = path.resolve(`src/templates/draft_index.tsx`)
 
   const result = await getGraphql<GatsbyNodeQuery>(graphql`
     query GatsbyNode {
@@ -131,7 +137,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
           related: related
             .map(slug => slugToEdgeMapping[slug])
             .map(remarkToPageInfo),
-        },
+        } as PostPageContext,
       })
     })
 
@@ -148,7 +154,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
         frontmatter: frontmatter as Frontmatter,
         related: [],
         latest: [],
-      },
+      } as PostPageContext,
     })
   })
 
@@ -164,7 +170,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
       context: {
         tag,
         posts: posts.map(slug => slugToEdgeMapping[slug]).map(remarkToPageInfo),
-      },
+      } as TagPageContext,
     })
   })
 
@@ -176,8 +182,18 @@ export const createPages: GatsbyNode["createPages"] = async ({
       postCount: Object.fromEntries(
         tags.map(tag => [tag, getTagPosts(tag).length])
       ),
-    },
+    } as TagIndexPageContext,
   })
+
+  if (draftPosts.length > 0) {
+    createPage({
+      path: `/drafts`,
+      component: draftIndexPage,
+      context: {
+        posts: draftPosts.map(remarkToPageInfo),
+      } as DraftIndexPageContext,
+    })
+  }
 
   // image generation
   const generateImage = true
